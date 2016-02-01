@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  privacity: false
+  meme: MyString
+  memeid: MyString
+
+two:
+  user_id: 
+  privacity: false
+  meme: MyString
+  memeid: MyString
