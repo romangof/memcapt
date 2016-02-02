@@ -1,1 +1,1 @@
-Dir['../lib/core_extentions/*.rb'].each {|file| require file }
+Dir[Rails.root.to_s+'/lib/core_extentions/*.rb'].each {|file| require file }
