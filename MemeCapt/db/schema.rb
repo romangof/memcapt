@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20160201201126) do
 
   create_table "images", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
-    t.boolean  "privacity"
-    t.string   "meme",       limit: 255
-    t.string   "memeid",     limit: 255
+    t.boolean  "privacity",              null: false
+    t.string   "meme",       limit: 255, null: false
+    t.string   "memeid",     limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20160201201126) do
   add_index "tags", ["image_id"], name: "index_tags_on_image_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",   limit: 255
-    t.string   "password",   limit: 255
-    t.string   "email",      limit: 255
+    t.string   "username",   limit: 255, null: false
+    t.string   "password",   limit: 255, null: false
+    t.string   "email",      limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
