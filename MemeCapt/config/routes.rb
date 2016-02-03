@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  unless Rails.application.config.consider_all_requests_local
+    get '*not_found', to: 'errors#error_404'
+  end
+
   resources :users, only: [:index, :show, :create, :update, :destroy]
 end
 
