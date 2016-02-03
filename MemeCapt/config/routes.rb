@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  resources :users, only: [:index, :show, :create, :update, :destroy]
+end
+
+# Usage > 
+
+# Rails.application.routes.draw do
+#   resources :bills, only: [:index, :show, :create, :update, :destroy] do
+#     resources :bill_details, only: [:index, :show, :create, :update, :destroy] do
+#       resources :products, only: [:index, :show, :create, :update, :destroy]
+#     end
+#   end
+#   resources :bill_details, only: [:index, :show, :create, :update, :destroy]
+#   resources :products, only: [:index, :show, :create, :update, :destroy]
+# end
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +73,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
