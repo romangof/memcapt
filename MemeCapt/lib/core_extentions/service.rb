@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-require "rest-client"
-
-=======
->>>>>>> e0c55dc82cc84d688ce2c46580ee39ff939deeea
 class Service
 
   def self.get_source_images_info
