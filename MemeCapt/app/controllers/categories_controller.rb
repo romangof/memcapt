@@ -12,20 +12,30 @@ class CategoriesController < ApplicationController
   
   def create
     cat = Category.new(permit_params)
-
     if cat.save
       render json: {message: "TODO OK"}      
     else
-      # render json: {message: "NOT OK"}
       render json: b.errors.message
     end
 
   end
   
   def update
+    cat = Category.find(params[:id])
+    if cat.update(permit_params)
+      render json: {message: "TODO OK"}
+    else
+      render json: b.errors.message
+    end
   end
 
   def destroy
+    cat = Category.find(params[:id])
+    if cat.delete
+      render json: {message: "TODO OK"}
+    else
+      render json: b.errors.message
+    end
   end
 
   private

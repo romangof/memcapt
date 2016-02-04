@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     if user.save
       render json: {message: "TODO OK"}      
     else
-      # render json: {message: "NOT OK"}
       render json: b.errors.message
     end
   end
