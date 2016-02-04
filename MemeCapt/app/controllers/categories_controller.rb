@@ -2,26 +2,36 @@ class CategoriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
   rescue_from ActionController::ParameterMissing, with: :error_not_found
 
-
   def index
     render json: Category.all
   end
 
-  def show    
+  def show
+    render json: Category.find( params[:id] )
   end
   
-  def create    
+  def create
+    cat = Category.new(permit_params)
+
+    if cat.save
+      render json: {message: "TODO OK"}      
+    else
+      # render json: {message: "NOT OK"}
+      render json: b.errors.message
+    end
+
   end
   
-  def update    
+  def update
   end
 
-  def destroy    
+  def destroy
   end
 
   private
 
-  def permit_params    
+  def permit_params
+    params.require(:category).permit(:catname)
   end
 
   def error_not_found(error)

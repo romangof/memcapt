@@ -2,26 +2,25 @@ class LikesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
   rescue_from ActionController::ParameterMissing, with: :error_not_found
 
-
-  def index    
+  def index
     render json: Like.all
   end
 
-  def show    
+  def show
   end
   
-  def create    
+  def create
   end
   
-  def update    
+  def update
   end
 
-  def destroy    
+  def destroy
   end
 
   private
 
-  def permit_params    
+  def permit_params
   end
 
   def error_not_found(error)
