@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tagname: MyString
+  itag: MyString
+  image_id: 
+  tag_id: 
 
 two:
-  tagname: MyString
+  itag: MyString
+  image_id: 
+  tag_id: 

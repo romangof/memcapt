@@ -1,3 +1,5 @@
 class Tag < ActiveRecord::Base
-  belongs_to :image
+  has_many :images through: :tag_images
+
+  validates :tagname
 end

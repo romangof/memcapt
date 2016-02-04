@@ -2,12 +2,14 @@
 
 one:
   user_id: 
+  categoryname: MyString
   privacity: false
   meme: MyString
   memeid: MyString
 
 two:
   user_id: 
+  categoryname: MyString
   privacity: false
   meme: MyString
   memeid: MyString
