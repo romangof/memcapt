@@ -2,12 +2,24 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
   rescue_from ActionController::ParameterMissing, with: :error_not_found
 
-  before_action :authenticate, except: [:create]
+  before_action :authenticate, except: [:login, :create]
 
 
   def login
-    # asdasd
-    render json: {message: "HERE"}
+    if User.find_by(username: params[:username]) != nil
+      user = User.find_by(username: params[:username])
+    elsif User.find_by(email: params[:email]) != nil
+      user = User.find_by(email: params[:email])
+    else
+      render json: {message: "NOT FOUND"}
+    end
+
+    if user.password == params[:password].hash.to_s
+      user.save
+      render json: {message: "TODO OK, TOKEN VALID FOR AN HOUR", token: user.auth_token}
+    else
+      render json: {message: "NOT FOUND"}
+    end
   end
 
   def index
@@ -21,7 +33,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(permit_params)
     if user.save
-      render json: {message: "TODO OK"}      
+      render json: {message: "TODO OK, TOKEN VALID FOR AN HOUR", token: user.auth_token}      
     else
       render json: user.errors.messages
     end
