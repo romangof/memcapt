@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
   rescue_from ActionController::ParameterMissing, with: :error_not_found
 
+  before_action :authenticate
+
   def index
     render json: Category.all
   end
@@ -15,7 +17,7 @@ class CategoriesController < ApplicationController
     if cat.save
       render json: {message: "TODO OK"}      
     else
-      render json: b.errors.message
+      render json: cat.errors.message
     end
 
   end
@@ -25,7 +27,7 @@ class CategoriesController < ApplicationController
     if cat.update(permit_params)
       render json: {message: "TODO OK"}
     else
-      render json: b.errors.message
+      render json: cat.errors.message
     end
   end
 
@@ -34,7 +36,7 @@ class CategoriesController < ApplicationController
     if cat.delete
       render json: {message: "TODO OK"}
     else
-      render json: b.errors.message
+      render json: cat.errors.message
     end
   end
 

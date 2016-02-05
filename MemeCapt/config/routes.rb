@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'users/login' => 'users#login'
+
   resources :users, only: [:index, :show, :create, :update, :destroy] do
     resources :images, only: [:index, :show, :create, :update, :destroy]
   end
@@ -8,7 +10,9 @@ Rails.application.routes.draw do
   # Routing error
   match "*path", to: "application#render_404", via: :all
 
+
 end
+
 
 # Usage > 
 # Rails.application.routes.draw do
@@ -20,25 +24,6 @@ end
 #   resources :bill_details, only: [:index, :show, :create, :update, :destroy]
 #   resources :products, only: [:index, :show, :create, :update, :destroy]
 # end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

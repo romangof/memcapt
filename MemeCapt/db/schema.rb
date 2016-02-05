@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20160204144858) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "catname",    limit: 255
+    t.string   "catname",    limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
   create_table "images", force: :cascade do |t|
-    t.boolean  "privacity"
+    t.boolean  "privacity",               null: false
     t.string   "top_text",    limit: 255
     t.string   "bot_text",    limit: 255
     t.string   "img_id",      limit: 255, null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160204144858) do
   create_table "users", force: :cascade do |t|
     t.string   "username",   limit: 255, null: false
     t.string   "password",   limit: 255, null: false
+    t.string   "auth_token", limit: 255, null: false
     t.string   "email",      limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

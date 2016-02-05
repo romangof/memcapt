@@ -2,6 +2,14 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
   rescue_from ActionController::ParameterMissing, with: :error_not_found
 
+  before_action :authenticate, except: [:create]
+
+
+  def login
+    # asdasd
+    render json: {message: "HERE"}
+  end
+
   def index
     render json: User.all
   end
@@ -12,11 +20,10 @@ class UsersController < ApplicationController
   
   def create
     user = User.new(permit_params)
-
     if user.save
       render json: {message: "TODO OK"}      
     else
-      render json: b.errors.message
+      render json: user.errors.messages
     end
   end
   
@@ -25,7 +32,7 @@ class UsersController < ApplicationController
     if user.update(permit_params)
       render json: {message: "TODO OK"}
     else
-      render json: b.errors.message
+      render json: user.errors.messages
     end
   end
 
@@ -34,7 +41,7 @@ class UsersController < ApplicationController
     if user.delete
       render json: {message: "TODO OK"}
     else
-      render json: b.errors.message
+      render json: user.errors.messages
     end
   end
 
@@ -44,6 +51,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :username,
       :password,
+      :auth_token,
       :email
     )
   end

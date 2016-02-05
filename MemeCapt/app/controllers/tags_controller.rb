@@ -2,6 +2,8 @@ class TagsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :error_not_found
   rescue_from ActionController::ParameterMissing, with: :error_not_found
 
+  before_action :authenticate
+
   def index
     render json: Tag.all
   end
@@ -15,7 +17,7 @@ class TagsController < ApplicationController
     if tag.save
       render json: {message: "TODO OK"}      
     else
-      render json: b.errors.message
+      render json: tag.errors.message
     end
 
   end
@@ -25,7 +27,7 @@ class TagsController < ApplicationController
     if tag.update(permit_params)
       render json: {message: "TODO OK"}
     else
-      render json: b.errors.message
+      render json: tag.errors.message
     end
   end
 
@@ -34,7 +36,7 @@ class TagsController < ApplicationController
     if tag.delete
       render json: {message: "TODO OK"}
     else
-      render json: b.errors.message
+      render json: tag.errors.message
     end
   end
 
