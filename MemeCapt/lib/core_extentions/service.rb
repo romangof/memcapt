@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Service
 
   def self.get_source_images_info
@@ -6,7 +8,8 @@ class Service
 
   def self.post_image(src_image_id='Eb8P9A', top_text="Top text", bottom_text='Bottom text')
     request= set_request(src_image_id, top_text, bottom_text)
-    RestClient.post(direction(['gend_images']), request.to_json, content_type: "application/json", accept: "application/json")
+    response = JSON.parse(RestClient.post(direction(['gend_images']), request.to_json, content_type: "application/json", accept: "application/json"))
+    save_img(response["status_url"])
   end
 
   private
@@ -39,16 +42,10 @@ class Service
     }
   end
 
+  def self.save_img (url)
+    open(Rails.root.to_s+'/created_memes/'+Time.now.strftime('%Y-%m-%d_%H-%M-%S')+'_'+url.split('/').last+'.jpg' , 'wb') do |file|
+      file << open(url).read
+    end
+  end
 
 end
-
-
-  # def self.call_service(args, params='')
-  #   response = RestClient.get( direction(args), {params:params} )
-    
-  #   if params == ''
-  #     JSON.parse( response )
-  #   else
-  #     response
-  #   end
-  # end
